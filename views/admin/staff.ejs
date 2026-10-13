@@ -1,0 +1,27 @@
+<%- include('../partials/admin-head') %>
+<h1>Users</h1>
+<div class="cols">
+  <div>
+    <form class="card fb" method="post" action="/admin/staff?_csrf=<%= csrf %>" style="max-width:none;margin-bottom:20px">
+      <h3>Add an admin user</h3>
+      <label for="un">Username</label><input id="un" name="username" required minlength="3" maxlength="30" autocomplete="off">
+      <label for="pw">Password (at least 10 characters)</label><input id="pw" name="password" type="password" required minlength="10" autocomplete="new-password">
+      <button class="btn p" type="submit">Add user</button>
+    </form>
+    <form class="card fb" method="post" action="/admin/password?_csrf=<%= csrf %>" style="max-width:none">
+      <h3>Change my password</h3>
+      <label for="cp">Current password</label><input id="cp" name="current" type="password" required autocomplete="current-password">
+      <label for="np">New password (at least 10 characters)</label><input id="np" name="password" type="password" required minlength="10" autocomplete="new-password">
+      <label for="ag">New password again</label><input id="ag" name="again" type="password" required minlength="10" autocomplete="new-password">
+      <button class="btn p" type="submit">Change password</button>
+    </form>
+  </div>
+  <div class="card">
+    <h3>Admin users (<%= rows.length %>)</h3>
+    <% rows.forEach(function (u) { %>
+      <div class="row"><span><%= u.username %><br><small>Added <%= fmt(u.created_at) %></small></span>
+      <% if (u.id !== user.id) { %><form method="post" action="/admin/staff/<%= u.id %>/delete?_csrf=<%= csrf %>" data-confirm="Delete this user?"><button class="del" type="submit">Delete</button></form><% } else { %><small>You</small><% } %></div>
+    <% }) %>
+  </div>
+</div>
+<%- include('../partials/admin-foot') %>

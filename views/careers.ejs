@@ -1,0 +1,11 @@
+<%- include('partials/head') %>
+<div class="page-head"><div class="wrap"><h1>Careers</h1><p>Open positions at the group.</p></div></div>
+<section><div class="wrap">
+  <% if (!jobs.length) { %><p class="lead">There are no open positions at the moment. Please check back soon.</p><% } else { %>
+  <p class="lead">To apply, email your CV and the position title to <a href="mailto:<%= site.email %>"><%= site.email %></a>.</p>
+  <% jobs.forEach(function (j) { %>
+    <div class="card job"><div><h3 style="margin:0"><%= j.title %></h3><p><% if (j.closing) { %>Closing date: <%= j.closing %>. <% } %><%= j.details %></p></div>
+    <a class="btn p" href="mailto:<%= site.email %>?subject=<%= encodeURIComponent('Application: ' + j.title) %>">Apply</a></div>
+  <% }) } %>
+</div></section>
+<%- include('partials/foot') %>

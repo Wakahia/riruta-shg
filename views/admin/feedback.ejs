@@ -1,0 +1,11 @@
+<%- include('../partials/admin-head') %>
+<h1>Feedback</h1>
+<% if (!rows.length) { %><p>No feedback yet.</p><% } %>
+<% rows.forEach(function (f) { %>
+  <div class="card" style="margin-bottom:14px">
+    <div class="row" style="border:0;padding-top:0"><span><b><%= f.name %></b> &middot; <a href="tel:<%= f.phone.replace(/[^0-9+]/g, '') %>"><%= f.phone %></a><br><small><%= fmt(f.created_at, true) %></small></span>
+    <form method="post" action="/admin/feedback/<%= f.id %>/delete?_csrf=<%= csrf %>" data-confirm="Delete this message?"><button class="del" type="submit">Delete</button></form></div>
+    <p class="fmsg" style="margin:0"><%= f.message %></p>
+  </div>
+<% }) %>
+<%- include('../partials/admin-foot') %>

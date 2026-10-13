@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title><%= title ? title + ' | ' : '' %><%= site.name %></title>
+<meta name="description" content="Savings and affordable credit for the Riruta community, under Caritas Nairobi. Save, grow with us.">
+<link rel="icon" href="/img/group-logo.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="bar">
+  <a class="brand" href="/"><span class="chip"><img class="g" src="/img/group-logo.png" alt="St. John the Baptist Self Help Group logo"></span><span>St. John the Baptist<br>Self Help Group</span></a>
+  <span class="chip"><img class="c" src="/img/caritas-logo.png" alt="Caritas Nairobi logo"></span>
+  <nav aria-label="Main">
+    <% [['/', 'Home'], ['/loans', 'Loans'], ['/join', 'Join'], ['/news', 'News'], ['/gallery', 'Gallery'], ['/faq', 'FAQs'], ['/feedback', 'Feedback'], ['/contact', 'Contact']].forEach(function (l) { %>
+      <a href="<%= l[0] %>"<%- path === l[0] ? ' aria-current="page"' : '' %>><%= l[1] %></a>
+    <% }) %>
+    <a class="pill" href="/careers">Careers</a>
+  </nav>
+</div></header>
+<main id="main">

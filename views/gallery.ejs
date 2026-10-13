@@ -1,0 +1,9 @@
+<%- include('partials/head') %>
+<div class="page-head"><div class="wrap"><h1>Gallery</h1><p>Moments from our group.</p></div></div>
+<section><div class="wrap">
+  <% if (!pics.length) { %><p class="lead">No pictures yet.</p><% } %>
+  <div class="gal"><% pics.forEach(function (g) { %>
+    <figure><a href="/uploads/<%= g.image %>" target="_blank" rel="noopener"><img src="/uploads/<%= g.image %>" alt="<%= g.caption || 'Group picture' %>" loading="lazy"></a><% if (g.caption) { %><figcaption><%= g.caption %></figcaption><% } %></figure>
+  <% }) %></div>
+</div></section>
+<%- include('partials/foot') %>

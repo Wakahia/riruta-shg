@@ -1,0 +1,9 @@
+<%- include('partials/head') %>
+<div class="page-head"><div class="wrap"><h1>News</h1><p>Updates from the group.</p></div></div>
+<section><div class="wrap">
+  <% if (!news.length) { %><p class="lead">No news yet. Please check back soon.</p><% } %>
+  <div class="prods"><% news.forEach(function (n) { %>
+    <article class="prod"><% if (n.image) { %><img src="/uploads/<%= n.image %>" alt="" loading="lazy"><% } %><div><small><%= fmt(n.created_at) %></small><h3><%= n.title %></h3><p><%= n.body %></p></div></article>
+  <% }) %></div>
+</div></section>
+<%- include('partials/foot') %>

@@ -1,0 +1,7 @@
+<%- include('partials/head') %>
+<div class="page-head"><div class="wrap"><h1>Frequently asked questions</h1></div></div>
+<section><div class="wrap" style="max-width:820px">
+  <% site.faqs.forEach(function (f) { %><details><summary><%= f[0] %></summary><div><%= f[1] %></div></details><% }) %>
+  <p class="lead">Still have a question? <a href="/contact">Contact us</a> or <a href="/feedback">send feedback</a>.</p>
+</div></section>
+<%- include('partials/foot') %>

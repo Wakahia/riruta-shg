@@ -1,0 +1,17 @@
+<%- include('partials/head') %>
+<div class="page-head"><div class="wrap"><h1>Visit or get in touch</h1></div></div>
+<section><div class="wrap two">
+  <div class="contact-box">
+    <p><b><%= site.place %></b><br><%= site.directions %><br><%= site.po %></p>
+    <a class="big" href="tel:<%= site.phone.replace(/\s/g, '') %>"><%= site.phone %></a>
+    <p>Call or <a href="https://wa.me/<%= site.phoneIntl %>" target="_blank" rel="noopener">WhatsApp</a>.<br>Email <a href="mailto:<%= site.email %>"><%= site.email %></a></p>
+    <h3 style="margin-top:24px">Operating hours</h3>
+    <p style="margin:0"><% site.hours.forEach(function (h) { %><%= h[0] %>: <%= h[1] %><br><% }) %></p>
+  </div>
+  <div>
+    <div class="card pay"><h3>Member savings</h3><p style="margin:0">M-PESA PayBill <b><%= site.paybill %></b><br>Account no. <b><%= site.account %></b></p></div>
+    <div class="logos"><span class="chip"><img src="/img/group-logo.png" alt="St. John the Baptist Self Help Group logo"></span><span class="chip"><img src="/img/caritas-logo.png" alt="Caritas Nairobi logo"></span></div>
+    <p style="margin-top:24px;font-size:1.2rem"><b>Save, grow with us.</b></p>
+  </div>
+</div></section>
+<%- include('partials/foot') %>

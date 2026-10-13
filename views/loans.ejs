@@ -1,0 +1,29 @@
+<%- include('partials/head') %>
+<div class="page-head"><div class="wrap"><h1>Loans</h1><p>Loans are secured and guaranteed on a "shilling for a shilling" basis.</p></div></div>
+<section><div class="wrap">
+  <p class="lead">A self-guaranteed loan goes up to 95% of your savings. A guaranteed loan goes up to five times your savings.</p>
+  <div class="prods"><% site.products.forEach(function (p) { %><%- include('partials/product', { p: p }) %><% }) %></div>
+
+  <h2 style="margin-top:56px">Special loan products</h2>
+  <div class="prods"><% site.special.forEach(function (s) { %><%- include('partials/product', { p: Object.assign({ tag: '0.8% a month' }, s) }) %><% }) %></div>
+
+  <div class="rates">
+    <div class="rate"><b>1%</b><p style="margin:.4em 0 0">a month, reducing balance, on standard loans</p></div>
+    <div class="rate"><b>0.8%</b><p style="margin:.4em 0 0">a month, reducing balance, on special loan products</p></div>
+  </div>
+
+  <div class="card calc">
+    <h3>How long will I repay?</h3>
+    <p style="margin:0;color:var(--muted)">Enter a loan amount and your savings to see the repayment period and what you can borrow.</p>
+    <form>
+      <div><label for="amt">Loan amount (Ksh)</label><input id="amt" type="number" min="0" inputmode="numeric" placeholder="e.g. 400000"></div>
+      <div><label for="sav">Your savings (Ksh)</label><input id="sav" type="number" min="0" inputmode="numeric" placeholder="e.g. 100000"></div>
+    </form>
+    <div class="out" id="out" aria-live="polite">Your results will appear here.</div>
+    <div class="scroll"><table><thead><tr><th>Loan amount (Ksh)</th><th>Repayment period</th></tr></thead><tbody>
+      <% site.schedule.forEach(function (r) { %><tr><td><%= r[0] %></td><td><%= r[1] %></td></tr><% }) %>
+    </tbody></table></div>
+    <p style="color:var(--muted);font-size:.95rem;margin-bottom:0">Refinancing: after you have paid 50% of an existing loan. Terms and conditions apply.</p>
+  </div>
+</div></section>
+<%- include('partials/foot') %>

@@ -1,0 +1,15 @@
+<%- include('../partials/admin-head') %>
+<h1>Gallery</h1>
+<form class="card fb" method="post" enctype="multipart/form-data" action="/admin/gallery?_csrf=<%= csrf %>" style="max-width:none;margin-bottom:24px">
+  <h3>Add pictures</h3>
+  <label for="im">Pictures (JPG, PNG or WebP, up to 5 MB each, up to 20 at a time)</label><input id="im" name="images" type="file" multiple required accept="image/jpeg,image/png,image/webp">
+  <label for="c">Caption (optional, used for all pictures in this upload)</label><input id="c" name="caption" maxlength="150">
+  <button class="btn p" type="submit">Add to gallery</button>
+</form>
+<h3>On the website (<%= rows.length %>)</h3>
+<% if (!rows.length) { %><p>No pictures yet.</p><% } %>
+<div class="agal"><% rows.forEach(function (g) { %>
+  <figure><img src="/uploads/<%= g.image %>" alt="<%= g.caption || '' %>" loading="lazy"><figcaption><%= g.caption || 'No caption' %></figcaption>
+  <form method="post" action="/admin/gallery/<%= g.id %>/delete?_csrf=<%= csrf %>" data-confirm="Delete this picture?"><button class="del" type="submit">Delete</button></form></figure>
+<% }) %></div>
+<%- include('../partials/admin-foot') %>

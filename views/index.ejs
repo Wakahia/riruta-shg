@@ -1,0 +1,40 @@
+<%- include('partials/head') %>
+<div class="hero"><div class="wrap">
+  <div>
+    <h1>Save, grow<span>with us.</span></h1>
+    <p>A savings and credit group of St. John the Baptist Catholic Church, Riruta. Save from just Ksh 50 a month, and borrow up to five times your savings at low, reducing-balance rates.</p>
+    <div class="btns"><a class="btn p" href="/join">Become a member</a><a class="btn s" href="tel:<%= site.phone.replace(/\s/g, '') %>">Call <%= site.phone %></a></div>
+    <div class="under"><span class="chip"><img src="/img/caritas-logo.png" alt="Caritas Nairobi"></span><span>Under the Archdiocese of Nairobi Caritas Registered Trustees</span></div>
+  </div>
+  <img class="ph" src="/img/team.jpg" alt="Group members in a meeting around a table">
+</div></div>
+
+<section><div class="wrap">
+  <h2><%= site.vision.replace(/\.$/, '') %></h2>
+  <p class="lead">We help people in Riruta and beyond build their savings, access fair credit and learn to use it well.</p>
+  <div class="two" style="margin-top:28px">
+    <div>
+      <div class="card mv"><h3>Our mission</h3><p style="margin:0"><%= site.mission %></p></div>
+      <div class="card" style="margin-top:20px"><h3>Member benefits</h3><ul style="margin:0;padding-left:1.1em"><% site.benefits.forEach(function (b) { %><li><%= b %></li><% }) %></ul></div>
+    </div>
+    <div class="card"><h3>What we do</h3><ol class="obj"><% site.objectives.forEach(function (o) { %><li><%= o %></li><% }) %></ol></div>
+  </div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+  <h2>Loans for every stage</h2>
+  <p class="lead">Self-guaranteed loans go up to 95% of your savings. Guaranteed loans go up to five times your savings.</p>
+  <div class="prods"><% site.products.slice(0, 3).forEach(function (p) { %><%- include('partials/product', { p: p }) %><% }) %></div>
+  <div class="btns"><a class="btn p" href="/loans">See all loans and rates</a></div>
+</div></section>
+
+<% if (news.length) { %>
+<section><div class="wrap">
+  <h2>Latest news</h2>
+  <div class="prods"><% news.forEach(function (n) { %>
+    <article class="prod"><% if (n.image) { %><img src="/uploads/<%= n.image %>" alt="" loading="lazy"><% } %><div><small><%= fmt(n.created_at) %></small><h3><%= n.title %></h3><p><%= n.body.length > 160 ? n.body.slice(0, 160) + '...' : n.body %></p></div></article>
+  <% }) %></div>
+  <div class="btns"><a class="btn o" href="/news">All news</a></div>
+</div></section>
+<% } %>
+<%- include('partials/foot') %>

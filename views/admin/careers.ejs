@@ -1,0 +1,20 @@
+<%- include('../partials/admin-head') %>
+<h1>Careers</h1>
+<div class="cols">
+  <form class="card fb" method="post" action="/admin/careers?_csrf=<%= csrf %>" style="max-width:none">
+    <h3>Add a position</h3>
+    <label for="t">Position title</label><input id="t" name="title" required maxlength="150">
+    <label for="d">Closing date (optional)</label><input id="d" name="closing" type="date">
+    <label for="x">Details</label><textarea id="x" name="details" rows="5" maxlength="3000"></textarea>
+    <button class="btn p" type="submit">Add position</button>
+  </form>
+  <div class="card">
+    <h3>Open positions (<%= rows.length %>)</h3>
+    <% if (!rows.length) { %><p>No open positions.</p><% } %>
+    <% rows.forEach(function (j) { %>
+      <div class="row"><span><%= j.title %><br><small><%= j.closing ? 'Closes ' + j.closing : 'No closing date' %></small></span>
+      <form method="post" action="/admin/careers/<%= j.id %>/delete?_csrf=<%= csrf %>" data-confirm="Remove this position?"><button class="del" type="submit">Remove</button></form></div>
+    <% }) %>
+  </div>
+</div>
+<%- include('../partials/admin-foot') %>

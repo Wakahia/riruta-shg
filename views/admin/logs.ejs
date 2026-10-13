@@ -1,0 +1,7 @@
+<%- include('../partials/admin-head') %>
+<h1>Logs</h1>
+<p class="lead">Logins, failed logins and every change made in the admin area. Showing the latest 300.</p>
+<div class="card scroll"><table><thead><tr><th>When</th><th>User</th><th>What happened</th><th>IP address</th></tr></thead><tbody>
+  <% rows.forEach(function (l) { %><tr><td><%= fmt(l.created_at, true) %></td><td><%= l.username || '-' %></td><td><%= l.action %></td><td><%= l.ip || '-' %></td></tr><% }) %>
+</tbody></table></div>
+<%- include('../partials/admin-foot') %>

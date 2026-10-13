@@ -1,0 +1,14 @@
+<%- include('partials/head') %>
+<div class="page-head"><div class="wrap"><h1>Share your feedback</h1><p>Your suggestions help us serve you better.</p></div></div>
+<section><div class="wrap">
+  <% if (sent) { %><div class="msg ok" role="status">Thank you. Your feedback has been received.</div><% } %>
+  <% if (error) { %><div class="msg error" role="alert"><%= error %></div><% } %>
+  <form class="card fb" method="post" action="/feedback">
+    <label for="name">Full name</label><input id="name" name="name" required maxlength="100" autocomplete="name" value="<%= form.name || '' %>">
+    <label for="phone">Phone number</label><input id="phone" name="phone" type="tel" required maxlength="20" autocomplete="tel" inputmode="tel" value="<%= form.phone || '' %>">
+    <label for="message">Your suggestion</label><textarea id="message" name="message" rows="5" required maxlength="2000"><%= form.message || '' %></textarea>
+    <div class="hp" aria-hidden="true"><label for="website">Leave this empty</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+    <button class="btn p" type="submit">Submit</button>
+  </form>
+</div></section>
+<%- include('partials/foot') %>

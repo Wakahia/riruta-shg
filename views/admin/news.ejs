@@ -1,0 +1,20 @@
+<%- include('../partials/admin-head') %>
+<h1>News</h1>
+<div class="cols">
+  <form class="card fb" method="post" enctype="multipart/form-data" action="/admin/news?_csrf=<%= csrf %>" style="max-width:none">
+    <h3>Add news</h3>
+    <label for="t">Title</label><input id="t" name="title" required maxlength="150">
+    <label for="b">Story</label><textarea id="b" name="body" rows="5" required maxlength="5000"></textarea>
+    <label for="i">Picture (optional, JPG, PNG or WebP, up to 5 MB)</label><input id="i" name="image" type="file" accept="image/jpeg,image/png,image/webp">
+    <button class="btn p" type="submit">Add news</button>
+  </form>
+  <div class="card">
+    <h3>Published news (<%= rows.length %>)</h3>
+    <% if (!rows.length) { %><p>Nothing yet.</p><% } %>
+    <% rows.forEach(function (n) { %>
+      <div class="row"><span><%= n.title %><br><small><%= fmt(n.created_at, true) %></small></span>
+      <form method="post" action="/admin/news/<%= n.id %>/delete?_csrf=<%= csrf %>" data-confirm="Delete this news item?"><button class="del" type="submit">Delete</button></form></div>
+    <% }) %>
+  </div>
+</div>
+<%- include('../partials/admin-foot') %>

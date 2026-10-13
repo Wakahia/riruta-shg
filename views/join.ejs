@@ -1,0 +1,12 @@
+<%- include('partials/head') %>
+<div class="page-head"><div class="wrap"><h1>Join us</h1><p>Joining takes four steps.</p></div></div>
+<section><div class="wrap">
+  <ol class="steps"><% site.steps.forEach(function (s) { %><li><h3><%= s[0] %></h3><p><%= s[1] %></p></li><% }) %></ol>
+  <div class="docs"><% site.docs.forEach(function (d) { %><div class="card"><h3><%= d[0] %></h3><ul><% d[1].forEach(function (i) { %><li><%= i %></li><% }) %></ul></div><% }) %></div>
+  <div class="card pay">
+    <h3>Paying your member savings</h3>
+    <p style="margin:0">M-PESA PayBill <b><%= site.paybill %></b><br>Account no. <b><%= site.account %></b> (replace IDno with your ID number)</p>
+  </div>
+  <p class="lead" style="margin-top:20px">You can also pay by bank deposit. Once processed, payments show in your member account, and you get an SMS alert where the notification service is active.</p>
+</div></section>
+<%- include('partials/foot') %>

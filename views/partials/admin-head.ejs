@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin | <%= site.short %></title>
+<link rel="icon" href="/img/group-logo.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="adtop"><div class="adbar">
+  <a class="brand" href="/admin"><span class="chip"><img class="g" src="/img/group-logo.png" alt=""></span><span>Admin</span></a>
+  <nav aria-label="Admin">
+    <% [['/admin', 'Dashboard'], ['/admin/news', 'News'], ['/admin/gallery', 'Gallery'], ['/admin/careers', 'Careers'], ['/admin/feedback', 'Feedback'], ['/admin/logs', 'Logs'], ['/admin/staff', 'Users']].forEach(function (l) { %>
+      <a href="<%= l[0] %>"<%- path === l[0] ? ' aria-current="page"' : '' %>><%= l[1] %><% if (l[1] === 'Feedback' && unread > 0) { %><span class="badge"><%= unread %></span><% } %></a>
+    <% }) %>
+  </nav>
+  <div class="right">
+    <a href="/" target="_blank" rel="noopener">View site</a>
+    <form method="post" action="/admin/logout?_csrf=<%= csrf %>"><button class="btn s" type="submit">Log out (<%= user.username %>)</button></form>
+  </div>
+</div></header>
+<main class="wrap adm-main">
+<% if (flash) { %><div class="flash <%= flash.type %>" role="status"><%= flash.msg %></div><% } %>

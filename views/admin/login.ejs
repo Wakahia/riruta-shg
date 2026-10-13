@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin login | <%= site.short %></title>
+<link rel="icon" href="/img/group-logo.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="login">
+  <div class="logos" style="margin:0 0 24px"><span class="chip"><img src="/img/group-logo.png" alt="St. John the Baptist Self Help Group logo"></span><span class="chip"><img src="/img/caritas-logo.png" alt="Caritas Nairobi logo"></span></div>
+  <h1 style="font-size:2rem">Admin login</h1>
+  <% if (error) { %><div class="msg error" role="alert"><%= error %></div><% } %>
+  <form class="card fb" method="post" action="/admin/login" style="max-width:none">
+    <label for="u">Username</label><input id="u" name="username" required autocomplete="username" autofocus>
+    <label for="p">Password</label><input id="p" name="password" type="password" required autocomplete="current-password">
+    <button class="btn p" type="submit">Log in</button>
+  </form>
+  <p><a href="/">Back to the website</a></p>
+</div>
+</body>
+</html>

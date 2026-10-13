@@ -1,0 +1,31 @@
+<%- include('../partials/admin-head') %>
+<h1>Dashboard</h1>
+<div class="stats">
+  <div class="stat"><b><%= stats.visitorsToday %></b><span>Visitors today</span></div>
+  <div class="stat"><b><%= stats.visitors7 %></b><span>Visitors, last 7 days</span></div>
+  <div class="stat"><b><%= stats.visitors30 %></b><span>Visitors, last 30 days</span></div>
+  <div class="stat"><b><%= stats.visitorsAll %></b><span>Visitors, all time</span></div>
+  <div class="stat"><b><%= stats.viewsToday %></b><span>Page views today</span></div>
+  <div class="stat"><b><%= stats.viewsAll %></b><span>Page views, all time</span></div>
+  <div class="stat"><b><%= unread %></b><span>New feedback messages</span></div>
+  <div class="stat"><b><%= stats.news + stats.gallery + stats.careers %></b><span>News, pictures and jobs live</span></div>
+</div>
+<div class="cols">
+  <div class="card">
+    <h3>Last 14 days</h3>
+    <div class="bars">
+      <% series.forEach(function (s) { %>
+        <div class="brow"><span><%= s.day.slice(5) %></span><div class="track"><div class="fill" style="width:<%= Math.round(s.views / max * 100) %>%"></div></div><span><%= s.visitors %> visitors</span></div>
+      <% }) %>
+    </div>
+    <p style="color:var(--muted);font-size:.9rem;margin-bottom:0">Bars show page views. A visitor is one browser, counted once per day.</p>
+  </div>
+  <div class="card">
+    <h3>Most viewed pages, last 30 days</h3>
+    <% if (!top.length) { %><p>No visits recorded yet.</p><% } %>
+    <% top.forEach(function (t) { %><div class="row"><span><%= t.path %></span><b><%= t.c %></b></div><% }) %>
+    <h3 style="margin-top:24px">Quick actions</h3>
+    <div class="btns" style="margin-top:8px"><a class="btn p" href="/admin/news">Add news</a><a class="btn o" href="/admin/gallery">Add pictures</a><a class="btn o" href="/admin/careers">Add a job</a></div>
+  </div>
+</div>
+<%- include('../partials/admin-foot') %>
